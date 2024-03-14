@@ -1,5 +1,7 @@
 package posjavajdbcjpahibernate;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import dao.DaoGeneric;
@@ -56,6 +58,27 @@ public class TesteHibernate {
 		pessoa = daoGeneric.updateMerge(pessoa);
 		
 		System.out.println(pessoa);
+	}
+	
+	@Test
+	public void testeDelete() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+				
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(7L, UsuarioPessoa.class);
+		
+		daoGeneric.deletarPorId(pessoa);		
+	}
+	
+	@Test
+	public void consultar() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> list = daoGeneric.listar(UsuarioPessoa.class);
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("==================");
+		}	
 	}
 	
 }
