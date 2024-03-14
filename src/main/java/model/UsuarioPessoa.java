@@ -1,20 +1,23 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuariopessoa")
 @NamedQueries({
-	
-	@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
-	@NamedQuery(name = "UsuarioPessoa.buscaPorNome", query = "select u from UsuarioPessoa u where u.nome = :nome")
-	
+
+		@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
+		@NamedQuery(name = "UsuarioPessoa.buscaPorNome", query = "select u from UsuarioPessoa u where u.nome = :nome")
+
 })
 public class UsuarioPessoa {
 
@@ -33,6 +36,9 @@ public class UsuarioPessoa {
 	private String senha;
 
 	private int idade;
+
+	@OneToMany(mappedBy = "usuarioPessoa") // um usuario tem muitos telefones
+	private List<TelefoneUser> telefoneUsers;
 
 	public Long getId() {
 		return id;
@@ -88,6 +94,14 @@ public class UsuarioPessoa {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	public List<TelefoneUser> getTelefoneUsers() {
+		return telefoneUsers;
+	}
+
+	public void setTelefoneUsers(List<TelefoneUser> telefoneUsers) {
+		this.telefoneUsers = telefoneUsers;
 	}
 
 	@Override

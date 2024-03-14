@@ -4,6 +4,7 @@
 	
 	<persistence-unit name="pos-java-jdbc-jpa-hibernate">
 	
+		<class>model.TelefoneUser</class>
 		<class>model.UsuarioPessoa</class>
 	
 		<properties>
