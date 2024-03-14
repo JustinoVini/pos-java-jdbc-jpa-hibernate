@@ -17,6 +17,16 @@ public class DaoGeneric<T> {
 		entityManager.persist(entidade);
 		transaction.commit();
 	}
+	
+	/*Salva ou atualiza*/
+	public T updateMerge(T entidade) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin(); // inicia
+		T entidadeSalva = entityManager.merge(entidade); // salva se não existir, ou atualiza se existir
+		transaction.commit();
+		
+		return entidadeSalva;
+	}
 
 	public T pesquisar(T entidade) {
 
