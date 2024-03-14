@@ -136,5 +136,32 @@ public class TesteHibernate {
 
 		System.out.println("Soma idaddes = " + somaIdade);
 	}
+	
+	@Test
+	public void testeNamedQuery1() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createNamedQuery("UsuarioPessoa.todos").getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+		}
+		
+	}
+	
+	@Test
+	public void testeNamedQuery2() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> lista = daoGeneric.getEntityManager()
+				.createNamedQuery("UsuarioPessoa.buscaPorNome")
+				.setParameter("nome", "Merge hibernate")
+				.getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+		}
+		
+	}
 
 }
