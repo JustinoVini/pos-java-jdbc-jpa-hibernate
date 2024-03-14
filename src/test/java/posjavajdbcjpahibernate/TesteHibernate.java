@@ -92,4 +92,18 @@ public class TesteHibernate {
 		
 	}
 	
+	@Test
+	public void testeQueryListOrderBy() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager()
+				.createQuery(" from UsuarioPessoa order by id")
+				.setMaxResults(5)
+				.getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+		}
+		
+	}
+	
 }
